@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import FilmDetail from '../components/FilmDetail';
 import FilmList from '../components/FilmList';
+import TitleBar from '../components/TitleBar';
 
 const FilmListContainer = () => {
   const [films, setFilms] = useState([]);
   const [selectedFilm, setSelectedFilm] = useState(null);
+  const [favoriteFilms, setfavoriteFilms] = useState([]);
+  const [selectedList, setSelectedList] = useState([]);
+  const listsArray = [films, favoriteFilms];
 
   useEffect(() => {
     loadFilms();
-  }, []);
+  }, [selectedList]);
 
   const loadFilms = () => {
     fetch('https://ghibliapi.herokuapp.com/films')
@@ -21,9 +25,16 @@ const FilmListContainer = () => {
     setSelectedFilm(film);
   };
 
+  const handleSelectChange = function (event) {
+    setSelectedList(event.target.value);
+  };
+
   return (
     <>
-      <h1>Studio Ghibli Movies</h1>
+      <TitleBar
+        listsArray={listsArray}
+        handleSelectChange={handleSelectChange}
+      />
       <div className='film-list-container'>
         <div>
           <FilmList films={films} onFilmClick={onFilmClick} />

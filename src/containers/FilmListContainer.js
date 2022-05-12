@@ -23,12 +23,16 @@ const FilmListContainer = () => {
 
   return (
     <>
+      <h1>Studio Ghibli Movies</h1>
       <div className='film-list-container'>
-        <h1>Studio Ghibli Movies</h1>
-        <FilmList films={films} onFilmClick={onFilmClick} />
-        {selectedFilm ? (
-          <FilmDetail selectedFilm={selectedFilm} onFilmClick={onFilmClick} />
-        ) : null}
+        <div>
+          <FilmList films={films} onFilmClick={onFilmClick} />
+        </div>
+        <div>
+          {selectedFilm ? (
+            <FilmDetail selectedFilm={selectedFilm} onFilmClick={onFilmClick} />
+          ) : null}
+        </div>
       </div>
     </>
   );

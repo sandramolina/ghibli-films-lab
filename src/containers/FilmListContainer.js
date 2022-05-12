@@ -4,9 +4,14 @@ import FilmList from '../components/FilmList';
 import TitleBar from '../components/TitleBar';
 
 const FilmListContainer = () => {
+  const mockFaves = [
+    { title: '1st movie' },
+    { title: '2nd movie' },
+    { title: 'third movie' },
+  ];
   const [films, setFilms] = useState([]);
   const [selectedFilm, setSelectedFilm] = useState(null);
-  const [favoriteFilms, setfavoriteFilms] = useState([]);
+  const [favoriteFilms, setfavoriteFilms] = useState(mockFaves);
   const [selectedList, setSelectedList] = useState([]);
   const listsArray = [films, favoriteFilms];
 
@@ -37,7 +42,11 @@ const FilmListContainer = () => {
       />
       <div className='film-list-container'>
         <div>
-          <FilmList films={films} onFilmClick={onFilmClick} />
+          {selectedList == favoriteFilms ? (
+            <FilmList films={favoriteFilms} onFilmClick={onFilmClick} />
+          ) : (
+            <FilmList films={films} onFilmClick={onFilmClick} />
+          )}
         </div>
         <div>
           {selectedFilm ? (

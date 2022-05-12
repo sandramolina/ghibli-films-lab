@@ -5,7 +5,7 @@ const TitleBar = ({ listsArray, handleSelectChange }) => {
     <>
       <h1>Studio Ghibli Movies</h1>
       <select onChange={handleSelectChange}>
-        <option value=''>--Please choose an option--</option>
+        {/* <option value=''>--Please choose an option--</option> */}
         <option key='0' value={listsArray[0]}>
           All Films
         </option>

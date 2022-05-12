@@ -1,17 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import FilmDetail from '../components/FilmDetail';
 import FilmList from '../components/FilmList';
+import FavouritesList from '../components/FavouritesList';
 import TitleBar from '../components/TitleBar';
 
 const FilmListContainer = () => {
-  const mockFaves = [
-    { title: '1st movie' },
-    { title: '2nd movie' },
-    { title: 'third movie' },
-  ];
   const [films, setFilms] = useState([]);
   const [selectedFilm, setSelectedFilm] = useState(null);
-  const [favoriteFilms, setfavoriteFilms] = useState(mockFaves);
+  const [favoriteFilms, setfavoriteFilms] = useState([]);
   const [selectedList, setSelectedList] = useState([]);
   const listsArray = [films, favoriteFilms];
 
@@ -32,8 +28,19 @@ const FilmListContainer = () => {
 
   const handleSelectChange = function (event) {
     setSelectedList(event.target.value);
+    setSelectedFilm(null);
   };
 
+  const handleCheckboxChange = function (event) {
+    const checkedFilmId = event.target.value;
+    const checkedFilmObject = films.find(
+      (filmObject) => filmObject.id == checkedFilmId
+    );
+    console.log(test);
+    const copyArray = [...favoriteFilms, checkedFilmObject];
+    console.log(copyArray);
+    setfavoriteFilms(copyArray);
+  };
   return (
     <>
       <TitleBar
@@ -43,9 +50,17 @@ const FilmListContainer = () => {
       <div className='film-list-container'>
         <div>
           {selectedList == favoriteFilms ? (
-            <FilmList films={favoriteFilms} onFilmClick={onFilmClick} />
+            <FavouritesList
+              films={favoriteFilms}
+              onFilmClick={onFilmClick}
+              handleCheckboxChange={handleCheckboxChange}
+            />
           ) : (
-            <FilmList films={films} onFilmClick={onFilmClick} />
+            <FilmList
+              films={films}
+              onFilmClick={onFilmClick}
+              handleCheckboxChange={handleCheckboxChange}
+            />
           )}
         </div>
         <div>

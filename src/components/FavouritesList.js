@@ -1,8 +1,8 @@
 import React from 'react';
 import Films from './Films';
 
-const FilmList = ({ films, onFilmClick, handleCheckboxChange }) => (
-  <div className='film-list'>
+const FavouritesList = ({ films, onFilmClick, handleCheckboxChange }) => (
+  <div className='favourites-list'>
     {films.map((film) => (
       <Films
         key={film.id}
@@ -13,4 +13,4 @@ const FilmList = ({ films, onFilmClick, handleCheckboxChange }) => (
     ))}
   </div>
 );
-export default FilmList;
+export default FavouritesList;
